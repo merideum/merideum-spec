@@ -1,0 +1,5 @@
+site_name: Merideum Docs
+site_url: https://merideum.org/docs/
+repo_url: https://github.com/merideum/merideum-spec/
+theme:
+    name: mkdocs-material
