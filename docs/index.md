@@ -24,7 +24,7 @@ When a `POST` is made to `/merideum` with that request body, the result is retur
 ```
 
 ### Expanding with Resources
-Resources can be `imported` to a request to extend the request's functionality or execute code on the server. Resources are defined in the server's codebase and exposed on the request using the Merideum API.
+Resources can be `imported` on a request to call code external to the request. Resources are defined in the server's codebase and exposed on the request using the Merideum API.
 
 The resource, defined in Kotlin:
 ```kotlin
