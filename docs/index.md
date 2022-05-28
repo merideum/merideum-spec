@@ -9,7 +9,7 @@ Merit code is written within the request body:
 request helloWorld {
     const name = "Earth"
     
-    output message = "Hello $name!"
+    output message = "Hello ${name}!"
 }
 ```
 
