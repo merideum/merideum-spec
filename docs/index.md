@@ -66,7 +66,7 @@ Response:
 }
 ```
 
-Since resources are abstract within the request, their implementation in the server is entirely flexible and language specific. A resource may be a package in Go, a collection of exported functions in JavaScript, or even calls to a GraphQL service.
+Since resources are abstract within the request, their implementation in the server is entirely flexible and language specific. A resource may be a package in Go, a collection of exported functions in JavaScript, or even calls to a GraphQL service. This also means that multiple Merideum servers can be unified under one service, which Merideum supports through Federation.
 
 ### The Power of Contracts
 Contracts are a way to save requests within the server itself. Contracts can have parameters and output.
