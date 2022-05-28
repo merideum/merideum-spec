@@ -1,7 +1,7 @@
 # Welcome to the Merideum Docs!
 
 ## Basics
-Merideum is an http request protocol and execution engine that aims to make web services more dynamic and codelike. A Merideum server is a repository for resources which can be used within a request to execute code. Merideum includes a programming language called Merit which is used to define a request to the server.
+Merideum is an http request protocol and execution engine that aims to make web services more dynamic and code-like. A Merideum server is a repository for resources which can be used within a request. Merideum includes a programming language called Merit which is used to define a request to the server. The server executes the code and returns a result.
 
 Merit code is written within the request body:
 
