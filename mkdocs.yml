@@ -6,5 +6,6 @@ docs_dir: docs/
 repo_url: https://github.com/merideum/merideum-spec/
 nav:
     - Home: index.md
+    - Merit: merit.md
 theme:
     name: material
