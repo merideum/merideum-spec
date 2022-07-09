@@ -154,7 +154,7 @@ const car = {
 ```
 
 ### Nullability
-Variables are non-nullable by default. The `?` is used as part of the type declaration to denote a variable as nullable. 
+Variables are non-nullable by default. `?` is used as part of the type declaration to denote a variable as nullable. 
 If a nullable variable would be set to `null` at declaration, the type declaration _must_ be included.
 
 ```
