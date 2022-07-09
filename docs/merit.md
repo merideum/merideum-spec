@@ -43,7 +43,7 @@ A `const` variable cannot be reassigned. The request will fail and an error will
 const name = "Merideum"
 ```
 
-A type declaration is only necessary if the value of the variable is set to `null` at declaration.
+A type declaration is only necessary if the value of the variable is set to `null` at declaration. Otherwise, the type is inferred from the value of the assignment.
 
 ```
 const test: string? = null
