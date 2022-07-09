@@ -105,7 +105,7 @@ const nameLength = name.length()
 ```
 
 ### `object`
-An `object` is a collection of key/value pairs. Values are accessed through dot-notation or indexed notation using its key. 
+An `object` is a collection of key/value pair properties. Values are accessed through dot-notation or indexed notation using its key. 
 
 ```
 const car = {
@@ -128,7 +128,7 @@ var car = {
 car.driver = "Foo"
 ```
 
-Modifiers may be included on a key assignment. If the modifier is excluded, the value is `const`. `var` values must still be assigned a value at declaration time.
+Modifiers may be included on a property assignment. If the modifier is excluded, the value is `const`. `var` values must still be assigned a value at declaration time.
 
 ```
 const car = {
