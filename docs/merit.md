@@ -187,7 +187,7 @@ Response body (in json):
 }
 ```
 
-The server may include additional errors within this object.
+The server may also add to the `errors` object.
 
 ## `fail()`
 The `fail()` function is used to stop the code execution immediately and return any errors. Since execution is stopped immediately, the `fail()` function does not return a value.
