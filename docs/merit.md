@@ -168,7 +168,7 @@ test2 = null
 ___
 
 # `request` object
-The `request` object is a reserved variable that allows the user to get attributes of the request (like headers) or send errors and fail the request.
+The `request` object is a reserved variable that contains contextual attributes of the request (headers, auth, etc.) and is used to send non-output attributes on response (headers, errors, etc).
 
 ## `errors`
 `errors` is an object that will return on the response if populated.
