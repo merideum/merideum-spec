@@ -98,11 +98,10 @@ Contracts are a powerful way to extract business logic and code that is duplicat
 The following is an example of a contract that takes input, validates it against a set of rules, transforms the input, and saves it.
 
 ```
-import validations: PersonConstants
-import locationService: LocationService
-import personRepository: PersonRepository
-
 contract createPerson(firstName: String, surName: String, age: Int, zipCode: String) {
+    import validations: PersonConstants
+    import locationService: LocationService
+    import personRepository: PersonRepository
     
     if (validations.validateFirstName(firstName) == false) {
         error "firstName value is invalid."
