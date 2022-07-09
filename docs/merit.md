@@ -70,6 +70,8 @@ var test: string? = null
 
 The type of the reassigned value must match the original type of the variable. The request will fail and an error will be returned if a variable is attempted to be reassigned with a value of a different type.
 
+## As Expression
+
 A variable may be used in an expression.
 
 ```
@@ -196,6 +198,20 @@ request myRequest {
     const message = "This will not run"
 }
 ```
+
+## In contracts
+In a contract the `request` object is instead named `contract` but it is functionally equivalent.
+
+```
+contract myContract(name: string) {
+    if (name == "bad") {
+        contract.errors["badName"] = "The name ${name} is bad"
+
+        contract.fail()
+    }
+}
+```
+___
 
 # `return`
 The `return` keyword is used to stop execution and return a value on the response. The value of the `return` must be an `object`.
