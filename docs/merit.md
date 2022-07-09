@@ -31,6 +31,8 @@ contract myParametizedContract(name: string, birthYear: int) {
 }
 ```
 
+___
+
 # Variables
 A variable is either a `const` or a `var`.
 
@@ -41,15 +43,40 @@ A `const` variable cannot be reassigned. The request will fail and an error will
 const name = "Merideum"
 ```
 
-## var
-A `var` variable can be reassigned. A `var` variable may also be declared without an assignment. The type of the reassigned value must match the original type of the variable. The request will fail and an error will be returned if a variable is attempted to be reassigned with a value of a different type.
+A type declaration is only necessary if the value of the variable is set to `null` at declaration.
 
+```
+const test: string? = null
+```
+
+## var
+A `var` variable can be reassigned.
 ```
 var age = 24
 age = 25
 ```
 
+A `var` variable may also be declared without an assignment, but the type declaration is then required. 
+```
+var age: int
+
+age = 24
+```
+
+A type declaration is also required if the value would be null at declaration and assignment. 
+```
+var test: string? = null
+```
+
+The type of the reassigned value must match the original type of the variable. The request will fail and an error will be returned if a variable is attempted to be reassigned with a value of a different type.
+
 A variable may be used in an expression.
+
+```
+const name = "Merideum"
+
+const message = "Hello ${name}!"
+```
 
 ## Types
 
@@ -74,6 +101,69 @@ The `length()` function can be used to return the `int` length of a `string`.
 const name = "Merideum"
 const nameLength = name.length()
 ```
+
+### `object`
+An `object` is a collection of key/value pairs. Values are accessed through dot-notation or indexed notation using its key. 
+
+```
+const car = {
+    color = "red",
+    doors = 4
+}
+
+const carColor = car.color
+const carDoors = car["doors"]
+```
+
+If the modifier of the `object` variable is `var` instead of `const`, values can be added or removed to the object.
+
+```
+const car = {
+    color = "red",
+    doors = 4
+}
+
+car.driver = "Foo"
+```
+
+Modifiers may be included on a key assignment. If the modifier is excluded, the value is `const`. `var` values must still be assigned a value at declaration time.
+
+```
+const car = {
+    color = "red",
+    doors = 4,
+    var gas = 100
+}
+
+car.gas -= 10
+
+var car.driver = "Foo"
+```
+
+Just like with variables, a nullable value must have a type during declaration.
+
+```
+const car = {
+    color = "red",
+    doors = 4,
+    var gas = 100,
+    var driver: string? = null
+}
+```
+
+### Nullability
+Variables are non-nullable by default. The `?` is used as part of the type declaration to denote a variable as nullable. 
+If a nullable variable would be set to `null` at declaration, the type declaration _must_ be included.
+
+```
+const test: string? = null
+
+var test2: string?
+
+test2 = null
+```
+
+___
 
 # `request` object
 The `request` object is a reserved variable that allows the user to get attributes of the request (like headers) or send errors and fail the request.
@@ -128,6 +218,8 @@ Response body (in json):
 }
 ```
 
+___
+
 # Resources
 Resources are objects with functions that allow a Merit script to call code external to the script.
 
@@ -141,6 +233,32 @@ request myRequest {
 }
 ```
 
+Import statements can be folded into an `import` block.
+
+```
+request myRequest {
+
+    import personRepository: org.person.PersonRepository
+    import locationService: org.location.LocationService
+    import calendar: com.google.Calendar
+}
+```
+
+can be written as:
+
+```
+request myRequest {
+
+    import {
+        personRepository: org.person.PersonRepository
+        locationService: org.location.LocationService
+        calendar: com.google.Calendar
+    }
+}
+```
+
+## Functions
+
 A resource function may have parameters and return a value:
 ```
 request myRequest {
@@ -152,3 +270,4 @@ request myRequest {
 }
 ```
 
+The return value must be a Merit value (`int`, `string`, `object` etc.)
