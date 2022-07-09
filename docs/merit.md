@@ -5,14 +5,14 @@ The language is designed to be simple, concise, and familiar.
 Merit is intentionally unadvanced--this is to prevent misuse or abuse and keep requests and contracts from becoming too complex.
 
 # Script Definition
-The script definition block goes first on a Merit script. The script definition contains the script type `request` or `contract`, the name of the script, and, depending on the script type, a list of parameters.
+The script definition block goes first in a Merit script and contains the functionality of the script. The script definition contains the script type `request` or `contract`, the name of the script, and, depending on the script type, a list of parameters.
 
 
 ## Request
 A request definition does not have parameters.
 ```
 request myRequest {
-    // ...
+    // the code goes in here
 }
 ```
 
@@ -20,7 +20,7 @@ request myRequest {
 
 ```
 contract myContract {
-    // ...
+    // the code goes in here
 }
 ```
 
@@ -120,7 +120,7 @@ const carDoors = car["doors"]
 If the modifier of the `object` variable is `var` instead of `const`, values can be added or removed to the object.
 
 ```
-const car = {
+var car = {
     color = "red",
     doors = 4
 }
