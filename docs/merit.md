@@ -171,7 +171,7 @@ ___
 The `request` object is a reserved variable that contains contextual attributes of the request (headers, auth, etc.) and is used to send non-output attributes on the response (headers, errors, etc). `request` cannot be assigned to another variable or used in an expression (but its properties or function results can).
 
 ## `errors`
-`errors` is an object that will return on the response if populated.
+`errors` is a mutable object that will return on the response if populated.
 
 Usage:
 ```
