@@ -117,7 +117,17 @@ const carColor = car.color
 const carDoors = car["doors"]
 ```
 
-If the modifier of the `object` variable is `var` instead of `const`, values can be added or removed to the object.
+If the value of the field is a variable reference and the name would match, there is a shorthand assignment:
+```
+color = "red"
+
+const car = {
+    color,
+    doors = 4
+}
+```
+
+Values can be added or removed to the object.
 
 ```
 var car = {
@@ -128,28 +138,53 @@ var car = {
 car.driver = "Foo"
 ```
 
-Modifiers may be included on a property assignment. If the modifier is excluded, the value is `const`. `var` values must still be assigned a value at declaration time.
-
-```
-const car = {
-    color = "red",
-    doors = 4,
-    var gas = 100
-}
-
-car.gas -= 10
-
-var car.driver = "Foo"
-```
-
 Just like with variables, a nullable value must have a type during declaration.
 
 ```
 const car = {
     color = "red",
     doors = 4,
-    var gas = 100,
-    var driver: string? = null
+    gas = 100,
+    driver: string? = null
+}
+```
+
+A "sub-object" may be returned using the `splice` notation:
+```
+const person = {
+    firstName = "Foo",
+    lastName = "Bar",
+    age = 24
+}
+
+const nameOnly = person{ firstName, lastName }
+```
+If the field is an object, `splicing` may be performed on that field, and so on with its fields.
+
+```
+const person = {
+    firstName = "Foo",
+    lastName = "Bar",
+    age = 24,
+    location = {
+        city = "New York"
+        coords = {
+            geo = 2949034.39
+            lat = 320309.33
+            long = 856830.04
+        }
+    }
+}
+
+return person{ 
+    firstName,
+    lastName,
+    location{
+        city,
+        coords{
+            geo
+        }
+    }
 }
 ```
 
@@ -171,7 +206,7 @@ ___
 The `request` object is a reserved variable that contains contextual attributes of the request (headers, auth, etc.) and is used to send non-output attributes on the response (headers, errors, etc). `request` cannot be assigned to another variable or used in an expression (but its properties or function results can).
 
 ## `errors`
-`errors` is a mutable object that will return on the response if populated.
+`errors` is a mutable object that will return on the response body if populated. These errors show up under `errors.request`.
 
 Usage:
 ```
@@ -182,12 +217,12 @@ Response body (in json):
 ```json
 {
     "errors": {
-        "idNotFound": "The ID was not found."
+        "request": {
+            "idNotFound": "The ID was not found."
+        }
     }
 }
 ```
-
-The server may also add to the `errors` object.
 
 ## `fail()`
 The `fail()` function is used to stop the code execution immediately and return any errors. Since execution is stopped immediately, the `fail()` function does not return a value.
@@ -216,8 +251,7 @@ contract myContract(name: string) {
 ___
 
 # `return`
-The `return` keyword is used to stop execution and return a value on the response. The value of the `return` must be an `object`.
-
+The `return` keyword is used to stop execution successfully and return an `output` value on the response body. 
 Usage:
 ```
 request myRequest {
@@ -232,6 +266,22 @@ Response body (in json):
 {
     "output": {
         "message": "Hello World!"
+    }
+}
+```
+
+If the value of the return is not an `object`, then the value is wrapped in an `object` with the field name `value`.
+```
+request myRequest {
+    return "Hello World!"
+}
+```
+
+Response body (in json):
+```json
+{
+    "output": {
+        "value": "Hello World!"
     }
 }
 ```
@@ -287,5 +337,3 @@ request myRequest {
     const message = greeter.sayHello(name)
 }
 ```
-
-The return value must be a Merit value (`int`, `string`, `object` etc.)
